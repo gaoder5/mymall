@@ -8,7 +8,7 @@
 namespace app\index\controller;
 use think\Controller;
 
-class User extends Controller{
+class Users extends Controller{
     public function member_list(){
         return $this->fetch();
     }

@@ -51,8 +51,8 @@
 					<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-						<li><a href="#">切换账户</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="{:url('Login/login')}">切换账户</a></li>
+						<li><a href="{:url('AdminUser/login')}">退出</a></li>
 				</ul>
 			</li>
 				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -89,9 +89,9 @@
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{:url('User/member_list')}" data-title="会员列表" href="javascript:;">会员列表</a></li>
-					<li><a data-href="{:url('User/member_level')}" data-title="会员权限" href="javascript:;">会员权限</a></li>
-					<li><a data-href="{:url('User/member_scoreoperation')}" data-title="会员优惠" href="javascript:;">会员优惠</a></li>
+					<li><a data-href="{:url('Users/member_list')}" data-title="会员列表" href="javascript:;">会员列表</a></li>
+					<li><a data-href="{:url('Users/member_level')}" data-title="会员权限" href="javascript:;">会员权限</a></li>
+					<li><a data-href="{:url('Users/member_scoreoperation')}" data-title="会员优惠" href="javascript:;">会员优惠</a></li>
 
 				</ul>
 			</dd>
@@ -100,10 +100,10 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 商品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{:url('Goods/picture_list')}" data-title="添加商品" href="javascript:void(0)">添加商品</a></li>
-					<li><a data-href="{:url('Goods/picture_list')}" data-title="商品列表" href="javascript:void(0)">商品列表</a></li>
-					<li><a data-href="{:url('Goods/picture_list')}" data-title="品牌列表" href="javascript:void(0)">品牌列表</a></li>
-					<li><a data-href="{:url('Goods/picture_list')}" data-title="分类列表" href="javascript:void(0)">分类列表</a></li>
+					<li><a data-href="{:url('Goods/goods_add')}" data-title="添加商品" href="javascript:void(0)">添加商品</a></li>
+					<li><a data-href="{:url('Goods/goods_list')}" data-title="商品列表" href="javascript:void(0)">商品列表</a></li>
+					<li><a data-href="{:url('GoodsBrand/product_brand')}" data-title="品牌列表" href="javascript:void(0)">品牌列表</a></li>
+					<li><a data-href="{:url('Goods/product_list')}" data-title="分类列表" href="javascript:void(0)">分类列表</a></li>
 					<li><a data-href="{:url('Goods/picture_list')}" data-title="用户评论" href="javascript:void(0)">用户评论</a></li>
 
 				</ul>
@@ -130,6 +130,7 @@
 				<ul>
 					<li><a data-href="{:url('Activity/Card_list')}" data-title="祝福贺卡" href="javascript:void(0)">祝福贺卡</a></li>
 					<li><a data-href="{:url('Activity/Group')}" data-title="团购活动" href="javascript:void(0)">团购活动</a></li>
+					<li><a data-href="{:url('Activity/bonus_list')}" data-title="红包类型" href="javascript:void(0)">红包类型</a></li>
 					<li><a data-href="{:url('Activity/credits_list')}" data-title="积分活动" href="javascript:void(0)">积分活动</a></li>
 					<li><a data-href="{:url('Activity/special_list')}" data-title="优惠活动" href="javascript:void(0)">优惠活动</a></li>
 			</ul>
@@ -171,8 +172,8 @@
 			<dd>
 				<ul>
 					<li><a data-href="{:url('System/link_list')}" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
-					<li><a data-href="{:url('System/system_method')}" data-title="配送方式" href="javascript:void(0)">配送方式</a></li>
-					<li><a data-href="{:url('System/system_area')}" data-title="地区列表" href="javascript:void(0)">地区列表</a></li>
+					<li><a data-href="{:url('System/method_list')}" data-title="配送方式" href="javascript:void(0)">配送方式</a></li>
+					<li><a data-href="{:url('System/area_list')}" data-title="地区列表" href="javascript:void(0)">地区列表</a></li>
 			</ul>
 		</dd>
 	</dl>

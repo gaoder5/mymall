@@ -29,34 +29,29 @@
 
     <div class="row cl">
         <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-            <a href="{:url('System/link_list')}"> <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;返回&nbsp;&nbsp;"></a>
+            <a href="{:url('System/method_list')}"> <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;返回&nbsp;&nbsp;"></a>
         </div>
     </div>
-    <form class="form form-horizontal"  action="{:url('System/link_addSave')}" method="post" enctype="multipart/form-data">
+    <form class="form form-horizontal"  action="{:url('System/method_addSave')}" method="post" enctype="multipart/form-data">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>链接名称：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>配送名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" name="link_name" id="link_name">
+                <input type="text" class="input-text" value="" placeholder="" name="shipping_name" id="shipping_name">
                 <span id="name"></span>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>链接地址：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>配送编码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="" name="link_url" id="link_url">
-                <span id="url"></span>
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="" name="shipping_code" id="shipping_code">
+                <span id="code"></span>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>链接LOGO：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>配送描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="file" class="input-text" autocomplete="off"  placeholder="" name="link_logo">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>显示排序：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder=""  name="show_order">
+                <input type="text" class="input-text" value="" placeholder=""  name="shipping_desc" id="shipping_desc">
+                <span id="desc"></span>
             </div>
         </div>
         <div class="row cl">
@@ -79,22 +74,31 @@
 <script type="text/javascript" src="__STATIC__/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
     $(function(){
-        $("#link_name").blur(function () {
-            if(!$("#link_name").val()){
-                $("#name").text('链接名称不能为空');
+        $("#shipping_name").blur(function () {
+            if(!$("#shipping_name").val()){
+                $("#name").text('配送名称不能为空');
                 $("#name").css('color','red');
             }else{
                 $("#name").text("");
             }
         })
-        $("#link_url").blur(function () {
-            if(!$("#link_url").val()){
-                $("#url").text('链接名称不能为空');
-                $("#url").css('color','red');
+        $("#shipping_code").blur(function () {
+            if(!$("#shipping_code").val()){
+                $("#code").text('配送编码不能为空');
+                $("#code").css('color','red')
             }else{
-                $("#url").text("");
+                $("#code").text('');
             }
         })
+        $("#shipping_desc").blur(function () {
+            if(!$("#shipping_code").val()){
+                $("#desc").text('配送编码不能为空');
+                $("#desc").css('color','red')
+            }else{
+                $("#desc").text('');
+            }
+        })
+
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',
