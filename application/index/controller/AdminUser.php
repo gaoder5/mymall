@@ -10,6 +10,7 @@ namespace app\index\controller;
 //引入使用模型命名空间
 use app\index\model\AdminUser as Log;
 use think\Controller;
+use think\Session;
 
 class AdminUser extends  Controller{
     public function login(){
@@ -20,6 +21,8 @@ class AdminUser extends  Controller{
             $status=$login->login(input('user_name'),input('password'));
             //判断用户是否登录
             if($status==1){
+               $data = input();
+                Session::set('user_name',$data['user_name']);
                 return $this->success('登录成功',url('Index/index'));
             }elseif ($status==2){
                 return $this->error('账户或密码错误');

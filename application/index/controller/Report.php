@@ -8,7 +8,7 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Report extends Controller{
+class Report extends Base {
     function user(){
         return $this->fetch();
     }

@@ -12,7 +12,7 @@ use think\Db;
 use Think\Db\Driver\Pdo;
 use think\Request;
 
-class System extends Controller{
+class System extends Base {
     //批量删除
     function mutildel(){
 //        /a返回的是数组

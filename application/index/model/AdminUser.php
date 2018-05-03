@@ -8,10 +8,13 @@
 namespace app\index\model;
 
 use think\Model;
+use think\Session;
 
 class AdminUser extends Model{
     public function login($username,$password){//传递两个参数
         //查询数据where（'user_name','=',$username）数据表字段user_name=$username提交过来的参数值
+        $data=[$username,$password];
+        Session::set('admin',$data);
         $admin = \think\Db::name('admin_user')->where('user_name','=',$username)->find();
         if($admin){
             //如果用户名和密码正确

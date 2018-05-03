@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class admin extends Controller
+class admin extends Base
 {
 
     public function admin()

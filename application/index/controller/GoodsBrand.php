@@ -48,7 +48,7 @@ class GoodsBrand extends Controller{
                 $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
                 $str=$info->getSaveName();
                 $data['brand_logo']=$str;
-                $re = Db::name('brand')->where('brand_id',$data['brand_id'])->update($data);
+                $re = Db::name('goods_brand')->where('brand_id',$data['brand_id'])->update($data);
                 if($re){
                     $this->success('修改成功',url('product_brand'));
                 }else{
@@ -56,7 +56,7 @@ class GoodsBrand extends Controller{
                 }
             }else{
                 $data=request()->post();
-                $re = Db::name('brand')->where('brand_id',$data['brand_id'])->update($data);
+                $re = Db::name('goods_brand')->where('brand_id',$data['brand_id'])->update($data);
                 if($re){
                     $this->success('修改成功',url('product_brand'));
                 }else{
@@ -69,14 +69,14 @@ class GoodsBrand extends Controller{
     public function search(){
         $content = $_POST['aa'];
         $sql = "select * from `s_goods_brand` where `brand_name` like '%".$content."%'";
-        $brand = Db::table('brand')->query($sql);
+        $brand = Db::table('goods_brand')->query($sql);
         return $this->fetch('product_brand',['list' =>$brand]);
     }
 
     public function delete(){
         if(request()->isGet()){
             $id=input('brand_id');
-            $re=model('brand')->get($id)->delete();
+            $re=model('goods_brand')->get($id)->delete();
             if($re){
                 $this->success('删除成功');
             }else{

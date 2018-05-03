@@ -8,7 +8,7 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Activity extends Controller{
+class Activity extends Base {
     public function Card_list(){
         return $this->fetch();
     }

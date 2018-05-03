@@ -9,11 +9,16 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 
-class GoodsCategory extends Controller{
+class GoodsCategory extends Controller {
     public function product_list(){
         $model = new \app\index\model\GoodsCategory();
         $list = $model->select();
-//        $list=Db::name('goods_category')->select();
+        foreach ($list as $v){
+            $date = Db::name('goods_type')->where(['type_id'=>$v['type_id']])->find();
+            $data = Db::name('goods_units')->where(['units_id'=>$v['units_id']])->find();
+            $v['type_id']=$date['type_name'];
+            $v['units_id']=$data['units_name'];
+        }
         $this->assign('list',$list);
         return $this->fetch();
     }
@@ -21,6 +26,10 @@ class GoodsCategory extends Controller{
     public function product_add(){
         $model = new \app\index\model\GoodsCategory;
         if (request()->isGet()){
+            $date = Db::name('goods_type')->select();
+            $re = Db::name('goods_units')->select();
+            $this->assign('re',$re);
+            $this->assign('data',$date);
             return $this->fetch();
         }else{
             $data = request()->post();
@@ -33,9 +42,21 @@ class GoodsCategory extends Controller{
         }
 
     }
+    //模糊查询
+    public function search(){
+        $content = $_POST['aa'];
+        $sql = "select * from `s_goods_category` where `cat_name` like '%".$content."%'";
+        $brand = Db::table('goods_category')->query($sql);
+        return $this->fetch('product_list',['list' =>$brand]);
+    }
+
     //修改
     public function product_edit(){
         if(request()->isGet()){
+            $list = Db::name('goods_type')->select();
+            $re = Db::name('goods_units')->select();
+            $this->assign('re',$re);
+            $this->assign('list',$list);
             $model=new \app\index\model\GoodsCategory();
             $data=$model->find(input('cat_id'));
             $this->assign('data',$data);
@@ -53,7 +74,7 @@ class GoodsCategory extends Controller{
     }
     //删除
     public function product_delete(){
-        $re=Db::name('goods_category')->delete(input('id'));
+        $re=Db::name('goods_category')->delete(input('cat_id'));
         if($re){
             $this->success('删除成功','product_list');
         }else{

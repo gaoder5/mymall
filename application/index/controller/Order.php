@@ -48,6 +48,18 @@ class Order extends Controller{
         }
         return $this->fetch('product_brand',['re'=>$re]);
     }
+//    合并订单
+    public function product_combine(){
+        $model = model('OrderGoods');
+        $re = $model->select();
+        foreach ($re as $v){
+            $a = Db::name('order_info')->where(['order_id'=>$v['order_id']])->find();
+            $v['order_id']=$a['order_sn'];
+        }
+        $this->assign('re',$re);
+        return $this->fetch();
+    }
+
 //    缺货登记
     public function booking_goods(){
         $model = model('BookingGoods');
@@ -66,18 +78,39 @@ class Order extends Controller{
         return $this->fetch('booking_goods',['re'=>$re]);
     }
 
-
+//    发货订单
     public function order_info(){
-        return $this->fetch();
+        $model = model('OrderInfo');
+        $re = $model->where('order_status',1)->select();
+        foreach ($re as $v){
+            $a = Db::name('users')->where(['user_id'=>$v['user_id']])->find();
+            $b = Db::name('goods_shipping')->where(['shipping_id'=>$v['shipping_id']])->find();
+            $c= Db::name('payment')->where(['pay_id'=>$v['pay_id']])->find();
+            $v['user_id']=$a['user_name'];
+            $v['shipping_name']=$b['shipping_name'];
+            $v['pay_name']=$c['pay_name'];
+        }
+        return $this->fetch('order_info',['re'=>$re]);
+        ////        订单号
+//        $order_info = Db::name('order_info')->find();
+//        $yCode = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
+//        $orderSn = $yCode[intval(date('Y')) - 2011] . strtoupper(dechex(date('m'))) . date('d') . substr(time(), -5) . substr(microtime(), 2, 5) . sprintf('%02d', rand(0, 99));
+//        $order_info['order_sn']=$orderSn;
     }
-
+//    退货订单
+    public function order_return(){
+        $model = model('OrderInfo');
+        $re = $model->where('order_status',4)->select();
+        return $this->fetch('order_return',['re'=>$re]);
+    }
 
 
 //批量删除
     function delCheck(){
         $ids = implode(',',$_POST['checks']);//将数组转化成字符串
             if(isset($ids)){
-            if(Db::name('order_goods')->delete($ids)){
+            if(Db::name('order_goods')->delete($ids))
+            {
                 $this->success('删除成功','order/product_list');
             }else{
                 $this->error('删除失败');
@@ -86,9 +119,7 @@ class Order extends Controller{
                 $this->error('删除数据不存在');
         }
     }
-
-
-//    修改
+//    订单查询的修改
     public function product_save(){
         $request = request();
         $id = input('order_id');
@@ -100,22 +131,19 @@ class Order extends Controller{
         }
         if ($request->isPost()){
             $data = [
-//                'order_id'=>input('order_id'),
                 'province'=>input('province'),
                 'city'=>input('city'),
                 'district'=>input('district'),
                 'address'=>input('address'),
                 'mobile'=>input('mobile'),
 //                'zipcode'=>input('zipcode')
-
             ];
-//            var_dump($data);exit;
-            $model->save($data);
-//            if ($re){
-//                $this->success('修改成功','product_brand');
-//            }else{
-//                $this->error('修改失败','product_save');
-//            }
+            $re=$model->where(['order_id'=>$id])->update($data);
+            if ($re){
+                $this->success('修改成功','product_brand');
+            }else{
+                $this->error('修改失败','product_save');
+            }
         }
     }
 }

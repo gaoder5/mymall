@@ -30,18 +30,12 @@
 </head>
 <body>
 <div class="page-container">
-	<form action="{:url('GoodsCategory/product_add')}" method="post" class="form form-horizontal" id="form-article-add">
+	<form action="{:url('GoodsCategory/product_edit')}" method="post" class="form form-horizontal" id="form-article-add">
 		<input type="hidden" name="cat_id" value="{$data.cat_id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="{$data.cat_name}" placeholder="" id="" name="cat_name">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">分类关键字：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" name="keywords" id="" placeholder="多个关键字用英文逗号隔开，限10个关键字" value="{$data.keywords}" class="input-text">
 			</div>
 		</div>
 		<div class="row cl">
@@ -54,19 +48,20 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">父类id：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{$data.type_id}" name="type_id">
+				<select name="type_id">
+					{volist name='list' id='v'}
+					<option value="{$v.type_id}" {if condition="$v['type_id'] eq $list['type_id']"}>{$v.type_name}</option>
+					{/volist}
+				</select>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">分类计算单位：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select class="select" name="measure_unit">
-					<option>请选择</option>
-					<option value="1">件</option>
-					<option value="2">双</option>
-					<option value="3">KG</option>
-					<option value="4">吨</option>
-					<option value="5">套</option>
+				<select class="select" name="units_id">
+					{volist name='re' id='v'}
+					<option value="{$v.units_id}" {if condition="$v['units_id'] eq $re['units_id']"}>{$v.units_name}</option>
+					{/volist}
 				</select>
 				</span> </div>
 		</div>
@@ -74,14 +69,14 @@
 			<label class="form-label col-xs-4 col-sm-2">是否在导航栏显示：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="radio" name="show_in_nav" value="0" {if condition="$data['show_in_nav'] eq 0 "}{/if} >不显示
-				<input type="radio" name="show_in_nav" value="1" checked {if condition="$data['show_in_nav'] eq 1 "}{/if>显示
+				<input type="radio" name="show_in_nav" value="1" checked {if condition="$data['show_in_nav'] eq 1 "}{/if}>显示
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">是否在前台页面显示：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="radio" name="filter_attr" value="0" {if condition="$data['filter_attr'] eq 0 "}{/if}>不显示
-				<input type="radio" name="filter_attr" value="1" {if condition="$data['filter_attr'] eq 1 "}{/if}  checked>显示
+				<input type="radio" name="is_show" value="0" {if condition="$data['is_show'] eq 0 "}{/if}>不显示
+				<input type="radio" name="is_show" value="1" {if condition="$data['is_show'] eq 1 "}{/if}  checked>显示
 			</div>
 		</div>
 		<div class="row cl">

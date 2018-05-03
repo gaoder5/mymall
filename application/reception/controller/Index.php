@@ -7,24 +7,14 @@
  */
 namespace app\reception\controller;
 use think\Controller;
+use think\Db;
 
 class Index extends Controller{
     public function index(){
-        return $this->fetch();
-    }
-    public function account(){
-        return $this->fetch();
-    }
-    public function contact(){
-        return $this->fetch();
-    }
-    public function product(){
-        return $this->fetch();
-    }
-    public function register(){
-        return $this->fetch();
-    }
-    public function single(){
+        $goods=Db::name('goods')->select();
+        $this->assign('goods',$goods);
+        $brand=Db::name('goods_brand')->select('brand_name');
+        $this->assign('brand',$brand);
         return $this->fetch();
     }
 }

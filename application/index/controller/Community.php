@@ -8,7 +8,7 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Community extends Controller{
+class Community extends Base {
     public function article_list(){
         return $this->fetch();
     }

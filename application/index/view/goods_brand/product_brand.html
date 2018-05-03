@@ -25,7 +25,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 商品管理 <span class="c-gray en">&gt;</span> 品牌管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form action="{:url('GoodsBrand/search')}" method="post">
+		<form action="{:url('GoodsBrand/search')}" method="post" enctype="multipart/form-data">
 		<input type="text" name="aa" class=" "  width="100px" height="90px" >
 		<input type="submit" value="搜索"class="btn btn-success" >
 			<a href="{:url('GoodsBrand/brand_add')}" class="btn btn-success" ><i class="Hui-iconfont">&#xe600;</i> 添加</a>
@@ -53,7 +53,7 @@
 				<tr class="text-c">
 					<td><input name="" type="checkbox" value=""></td>
 					<td>{$v.brand_name}</td>
-					<td><img src="/shop/public/uploads/{$v.brand_logo}" width="50px" alt=""></td>
+					<td><img src="/public/uploads/{$v.brand_logo}" width="50px" alt=""></td>
 					<td class="brand_desc">{$v.brand_desc}</td>
 					<td>{$v.site_url}</td>
 					<td ><a style="text-decoration:none"  href="{:url('brand_edit',['brand_id'=>$v['brand_id']])}" title="编辑">
